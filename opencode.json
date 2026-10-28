@@ -1,0 +1,96 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "deepseek/deepseek-flash",
+  "small_model": "deepseek/deepseek-flash",
+  "default_agent": "master_orchestrator",
+  "provider": {
+    "lmstudio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LM Studio (local)",
+      "options": {
+        "baseURL": "http://localhost:1234/v1"
+      },
+      "models": {
+        "qwen/qwen3.5-9b": {
+          "name": "qwen/qwen3.5-9b"
+        }
+      }
+    }
+  },
+  "agent": {
+    "master_orchestrator": {
+      "mode": "primary",
+      "model": "deepseek/deepseek-flash",
+      "temperature": 0.2,
+      "description": "Orchestrator for WW2AirBattles: plans, delegates, and keeps the GDD in scope.",
+      "fallback_models": [
+        "opencode/glm-5.3-flash",
+        "opencode/big-pickie"
+      ],
+      "reasoningEffort": "high",
+      "max_retries_before_fallback": 2
+    },
+    "mechanics_developer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "temperature": 0.1,
+      "description": "Architects and implements core Godot gameplay systems: shooting, enemy spawning, collisions, scoring and run progression for the WW2 air-battle shooter.",
+      "reasoningEffort": "low"
+    },
+    "game_feel_developer": {
+      "mode": "subagent",
+      "model": "lmstudio/qwen/qwen3.5-9b",
+      "temperature": 0.3,
+      "description": "Implements game feel and juice in Godot: screen shake, hit flashes, particles, audio feedback and responsive controls for the WW2 air-battle shooter on Android.",
+      "fallback_models": [
+        "deepseek/deepseek-flash"
+      ],
+      "max_retries_before_fallback": 2
+    },
+    "sr_game_designer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "description": "Owns the game vision and GDD: core loop, design pillars, progression and player experience goals for the WW2 air-battle shooter."
+    },
+    "mid_game_designer": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "description": "Turns the GDD into concrete feature specs, content parameters and acceptance criteria for the WW2 air-battle shooter."
+    },
+    "qa_agent": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "description": "Tests gameplay, performance and Android builds, writes reproducible bug reports and enforces quality gates for the WW2 air-battle shooter."
+    },
+    "producer_agent": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "description": "Manages production end to end: scopes milestones, assigns agents, tracks risks and validates deliverables for the WW2 air-battle shooter."
+    },
+    "sr_game_artist": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "description": "Defines the pixel-art visual direction, palette, style guide and asset pipeline for the WW2 air-battle shooter."
+    },
+    "technical_artist": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "description": "Builds Godot shaders, particle VFX, lighting and optimized art assets that hit 60 FPS on Android for the WW2 air-battle shooter."
+    },
+    "ui_ux_agent": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "description": "Designs and implements touch-first portrait UI, HUD, menus and accessibility flows for the WW2 air-battle shooter on Android."
+    },
+    "data_scientist": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "description": "Designs telemetry and KPIs, analyzes player behavior and builds retention and revenue forecasts for the WW2 air-battle shooter."
+    },
+    "market_analyst": {
+      "mode": "subagent",
+      "model": "deepseek/deepseek-flash",
+      "description": "Analyzes the mobile shooter market, competitors, monetization and launch positioning for the WW2 air-battle game."
+    }
+  }
+}

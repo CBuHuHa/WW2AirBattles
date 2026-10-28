@@ -1,0 +1,127 @@
+[gd_scene load_steps=6 format=3]
+
+; mission_select.tscn — экран выбора миссии (M5.3b; GDD «Оболочка»: «3 карточки со звёздами,
+; рекордом и замком»). Палитра ArtStyle: CREAM #D9D2C3 на тёмной подложке, звёзды #FFD166,
+; замок #B23A2E. Экран — полноэкранный оверлей поверх брифинга: затемнение 0.88, заголовок
+; «Кампания», строка снабжения, VBox из трёх карточек (строятся кодом из MissionData) и
+; «Назад» 320×88 снизу. Корень и Dim прозрачны для тапов (mouse_filter = 2); карточки и
+; кнопки — STOP (их собирает mission_select.gd).
+
+[ext_resource type="Script" path="res://scripts/mission_select.gd" id="1_select"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_normal"]
+bg_color = Color(0.117647, 0.12549, 0.101961, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_hover"]
+bg_color = Color(0.160784, 0.176471, 0.137255, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_pressed"]
+bg_color = Color(0.0901961, 0.0980392, 0.0784314, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MissionSelect" type="Control"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_select")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0784314, 0.0862745, 0.0705882, 0.88)
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 40.0
+offset_right = 270.0
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_type_variation = &"TitleLabel"
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 42
+text = "Кампания"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="SupplyLine" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 112.0
+offset_right = 270.0
+offset_bottom = 146.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_font_sizes/font_size = 24
+text = "Снабжение: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Cards" type="VBoxContainer" parent="."]
+offset_left = 24.0
+offset_top = 158.0
+offset_right = 516.0
+offset_bottom = 786.0
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="BackButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -136.0
+offset_right = 160.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_hover_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_pressed_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_back_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_back_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_back_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_back_normal")
+text = "Назад"

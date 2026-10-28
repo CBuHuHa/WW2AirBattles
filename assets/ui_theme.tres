@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=3 format=3]
+
+; ui_theme.tres — глобальная тема UI (M3-A). Подключена в project.godot: [gui] theme/custom.
+; Шрифт: Noto Sans (OFL, assets/fonts/OFL.txt) — единственный источник кириллицы для HUD и оверлеев.
+; TitleLabel — type variation для заголовков оверлеев: base_type Label, шрифт Bold.
+; Размеры: HUD 24, body 26–28, заголовки оверлеев 48 (theme_override_font_sizes в scenes/main.tscn).
+
+[ext_resource type="FontFile" uid="uid://dvay7armcshp7" path="res://assets/fonts/NotoSans-Regular.ttf" id="1_regular"]
+[ext_resource type="FontFile" uid="uid://ciw0yv61nlpbk" path="res://assets/fonts/NotoSans-Bold.ttf" id="2_bold"]
+
+[resource]
+default_font = ExtResource("1_regular")
+default_font_size = 24
+TitleLabel/base_type = &"Label"
+TitleLabel/fonts/font = ExtResource("2_bold")

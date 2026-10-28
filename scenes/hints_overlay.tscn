@@ -1,0 +1,107 @@
+[gd_scene load_steps=3 format=3]
+
+; hints_overlay.tscn — обучающие подсказки первого забега (GDD «First 30 seconds», п.2).
+; Три тёмные плашки с кремовым текстом 26 px, по центру, ниже середины поля:
+; блок заканчивается на y≈646 и не заходит на Ла-5 (старт y=840) и кнопку бомбы (справа снизу).
+; Корень и плашки прозрачны для ввода (mouse_filter = 2), анимацией владеет hints_overlay.gd.
+
+[ext_resource type="Script" path="res://scripts/hints_overlay.gd" id="1_hints"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plate"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 0.62)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HintsOverlay" type="Control"]
+process_mode = 1
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hints")
+
+[node name="Hint1" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 6.0
+offset_right = 200.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_plate")
+
+[node name="Text" type="Label" parent="Hint1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 26
+text = "Веди пальцем"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Hint2" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 62.0
+offset_right = 200.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_plate")
+
+[node name="Text" type="Label" parent="Hint2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 26
+text = "Стрельба автоматическая"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Hint3" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 118.0
+offset_right = 200.0
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_plate")
+
+[node name="Text" type="Label" parent="Hint3"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 26
+text = "Бомба — справа снизу"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2

@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "note": "SpriteCook asset manifest. Keys are stable GDD asset keys; no tokens or signed URLs.",
+  "sheets": {
+    "2026-10-27_smoke_sheet": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "model": "gemini-nano-banana-2.1",
+      "credits": 12,
+      "file": "assets/art/source/2026-10-27_smoke_sheet.png"
+    },
+    "2026-10-28_perk_icons": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "model": "gemini-nano-banana-2.1",
+      "credits": 12,
+      "label": "perk_icons_sheet",
+      "file": "assets/art/source/2026-10-28_perk_icons.png",
+      "sha12": "49bc70aefc8f",
+      "notes": "3x3 perk icon sheet, 100x100 px source (cells ~33x33, icons 21-29 px), binary alpha (0/255 only), sliced to 24x24 with tools/slice_spritecook_sheet.py"
+    }
+  },
+  "assets": {
+    "player_la5": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "sha12": "5abef1c796c3",
+      "label": "player_la5",
+      "file": "assets/art/player_la5.png",
+      "source": "2026-10-27_smoke_sheet"
+    },
+    "player_yak3": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "sha12": "a37e416a7dec",
+      "label": "player_yak3",
+      "file": "assets/art/player_yak3.png",
+      "source": "2026-10-27_smoke_sheet"
+    },
+    "player_p39": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "sha12": "858ef4d0b41e",
+      "label": "player_p39",
+      "file": "assets/art/player_p39.png",
+      "source": "2026-10-27_smoke_sheet"
+    },
+    "enemy_bf109": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "sha12": "c66090968541",
+      "label": "enemy_bf109",
+      "file": "assets/art/enemy_bf109.png",
+      "source": "2026-10-27_smoke_sheet"
+    },
+    "enemy_ju87": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "sha12": "9d8e64bfe7d9",
+      "label": "enemy_ju87",
+      "file": "assets/art/enemy_ju87.png",
+      "source": "2026-10-27_smoke_sheet"
+    },
+    "enemy_fw190": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "sha12": "da957ec7e096",
+      "label": "enemy_fw190",
+      "file": "assets/art/enemy_fw190.png",
+      "source": "2026-10-27_smoke_sheet"
+    },
+    "ui_star": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "sha12": "3a27e4269739",
+      "label": "ui_star",
+      "file": "assets/art/ui_star.png",
+      "source": "2026-10-27_smoke_sheet"
+    },
+    "ui_bomb": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "sha12": "f8bfaa0b9ed9",
+      "label": "ui_bomb",
+      "file": "assets/art/ui_bomb.png",
+      "source": "2026-10-27_smoke_sheet"
+    },
+    "pickup_repair": {
+      "asset_id": "0303583f-066a-4af0-a0e8-bb408f238c5f",
+      "sha12": "d4a1d2155fc5",
+      "label": "pickup_repair",
+      "file": "assets/art/pickup_repair.png",
+      "source": "2026-10-27_smoke_sheet"
+    },
+    "ui_perk_sparka": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "sha12": "b5850c7c338e",
+      "label": "ui_perk_sparka",
+      "file": "assets/art/ui_perk_sparka.png",
+      "source": "2026-10-28_perk_icons"
+    },
+    "ui_perk_ap": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "sha12": "dfe450f1c63f",
+      "label": "ui_perk_ap",
+      "file": "assets/art/ui_perk_ap.png",
+      "source": "2026-10-28_perk_icons"
+    },
+    "ui_perk_rockets": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "sha12": "3992f7966362",
+      "label": "ui_perk_rockets",
+      "file": "assets/art/ui_perk_rockets.png",
+      "source": "2026-10-28_perk_icons"
+    },
+    "ui_perk_shatter": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "sha12": "5d1685b7c338",
+      "label": "ui_perk_shatter",
+      "file": "assets/art/ui_perk_shatter.png",
+      "source": "2026-10-28_perk_icons"
+    },
+    "ui_perk_accuracy": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "sha12": "5629995c868a",
+      "label": "ui_perk_accuracy",
+      "file": "assets/art/ui_perk_accuracy.png",
+      "source": "2026-10-28_perk_icons"
+    },
+    "ui_perk_heavy": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "sha12": "054b8abc80f2",
+      "label": "ui_perk_heavy",
+      "file": "assets/art/ui_perk_heavy.png",
+      "source": "2026-10-28_perk_icons"
+    },
+    "ui_perk_repair": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "sha12": "5f3fa063efa0",
+      "label": "ui_perk_repair",
+      "file": "assets/art/ui_perk_repair.png",
+      "source": "2026-10-28_perk_icons"
+    },
+    "ui_perk_coolhead": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "sha12": "3bf02ab63af6",
+      "label": "ui_perk_coolhead",
+      "file": "assets/art/ui_perk_coolhead.png",
+      "source": "2026-10-28_perk_icons"
+    },
+    "ui_perk_emergency": {
+      "asset_id": "af90abf9-ba7e-497d-a946-11f987b7cf95",
+      "sha12": "7e48d959fe31",
+      "label": "ui_perk_emergency",
+      "file": "assets/art/ui_perk_emergency.png",
+      "source": "2026-10-28_perk_icons"
+    }
+  }
+}

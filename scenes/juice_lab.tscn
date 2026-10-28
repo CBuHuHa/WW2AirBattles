@@ -1,0 +1,106 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/juice/juice_lab.gd" id="1_lab"]
+
+[node name="JuiceLab" type="Node2D"]
+script = ExtResource("1_lab")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.560784, 0.65098, 0.698039, 1)
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Hint" type="Label" parent="UI"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 28
+text = "Juice Lab M4 — тап по зоне"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Grid" type="GridContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 200.0
+offset_right = -24.0
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 2
+alignment = 1
+mouse_filter = 2
+
+[node name="BtnShakePlayerHit" type="Button" parent="UI/Grid"]
+custom_minimum_size = Vector2(236, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Тряска 4px / 0.15s
+попадание по игроку"
+
+[node name="BtnShakeBomb" type="Button" parent="UI/Grid"]
+custom_minimum_size = Vector2(236, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Тряска 6px / 0.25s
+бомба + hit-stop 2к"
+
+[node name="BtnShakeBoss" type="Button" parent="UI/Grid"]
+custom_minimum_size = Vector2(236, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Тряска 8px / 0.4s
+смерть босса"
+
+[node name="BtnFlash" type="Button" parent="UI/Grid"]
+custom_minimum_size = Vector2(236, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Вспышка
+попадания"
+
+[node name="BtnExpSmall" type="Button" parent="UI/Grid"]
+custom_minimum_size = Vector2(236, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Взрыв small
+32×32, 4 кадра"
+
+[node name="BtnExpBoss" type="Button" parent="UI/Grid"]
+custom_minimum_size = Vector2(236, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Взрыв boss
+160×160, 6 кадров"
+
+[node name="Footnote" type="Label" parent="UI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.75)
+theme_override_font_sizes/font_size = 18
+text = "ScreenTouch only · 540×960 · фон и HUD не трясутся"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2

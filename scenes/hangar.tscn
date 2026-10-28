@@ -1,0 +1,191 @@
+[gd_scene load_steps=7 format=3]
+
+; hangar.tscn — экран ангара (M6.2b; GDD «Оболочка»: «Ангар (главный экран): текущий самолёт,
+; снабжение, звёзды», «Самолёты (ангар)»: 3 самолёта, ливреи 300/600/900).
+; Палитра ArtStyle: CREAM #D9D2C3 на тёмной подложке, акцент выбранного — #FFD166,
+; замок/нехватка снабжения — #B23A2E. Полноэкранный оверлей поверх брифинга:
+; заголовок «Ангар», строки «Снабжение: N» и «Звёзды: X/9», панель превью (ShipVisual 2×
+; с ливреей-тинтом на плашке цвета неба #8FA6B2 — как в забеге; на тёмной подложке
+; код-силуэт не читался), три карточки самолётов и ряд свотчей ливрей — карточки и свотчи
+; строятся кодом в hangar.gd из PlaneData/SaveGame; «Назад» 320×88 снизу.
+; Корень и Dim прозрачны для тапов (mouse_filter = 2); интерактив — STOP.
+
+[ext_resource type="Script" path="res://scripts/hangar.gd" id="1_hangar"]
+[ext_resource type="Script" path="res://scripts/ship_visual.gd" id="2_preview"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_preview"]
+bg_color = Color(0.560784, 0.65098, 0.698039, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 0.45)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_normal"]
+bg_color = Color(0.117647, 0.12549, 0.101961, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_hover"]
+bg_color = Color(0.160784, 0.176471, 0.137255, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_pressed"]
+bg_color = Color(0.0901961, 0.0980392, 0.0784314, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Hangar" type="Control"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hangar")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0784314, 0.0862745, 0.0705882, 0.92)
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 24.0
+offset_right = 270.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_type_variation = &"TitleLabel"
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 42
+text = "Ангар"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="SupplyLine" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 88.0
+offset_right = 270.0
+offset_bottom = 116.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_font_sizes/font_size = 22
+text = "Снабжение: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="StarsLine" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 116.0
+offset_right = 270.0
+offset_bottom = 144.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.819608, 0.4, 1)
+theme_override_font_sizes/font_size = 22
+text = "Звёзды: 0/9"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="PreviewPanel" type="PanelContainer" parent="."]
+offset_left = 24.0
+offset_top = 152.0
+offset_right = 516.0
+offset_bottom = 280.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_preview")
+
+[node name="Preview" type="Node2D" parent="PreviewPanel"]
+position = Vector2(246, 64)
+scale = Vector2(2, 2)
+script = ExtResource("2_preview")
+asset_key = &"player_la5"
+
+[node name="Cards" type="VBoxContainer" parent="."]
+offset_left = 24.0
+offset_top = 288.0
+offset_right = 516.0
+offset_bottom = 620.0
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="LiveryTitle" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 632.0
+offset_right = 516.0
+offset_bottom = 658.0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_font_sizes/font_size = 22
+text = "Ливрея"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="LiveryRow" type="HBoxContainer" parent="."]
+offset_left = 24.0
+offset_top = 664.0
+offset_right = 516.0
+offset_bottom = 760.0
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="BackButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -136.0
+offset_right = 160.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_hover_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_pressed_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_back_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_back_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_back_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_back_normal")
+text = "Назад"

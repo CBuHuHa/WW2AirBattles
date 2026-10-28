@@ -1,0 +1,15 @@
+# Текстовые файлы — LF в репозитории (проект собирается на Windows, Godot и GDScript к LF равнодушны).
+* text=auto eol=lf
+
+# Бинарные ассеты: не трогать построчные переводы и не пытаться диффить.
+*.png binary
+*.jpg binary
+*.webp binary
+*.wav binary
+*.ogg binary
+*.ttf binary
+*.otf binary
+*.keystore binary
+*.idsig binary
+*.apk binary
+*.aab binary

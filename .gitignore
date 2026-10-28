@@ -1,0 +1,24 @@
+# Godot import cache (пересоздаётся через `godot --headless --import`)
+.godot/
+
+# Сгенерированное Gradle-дерево сборки AAB (распаковывается из android_source.zip
+# при `--install-android-build-template`, после сборки до ~1.3 GB). Не редактируется руками.
+android/
+
+# Артефакты сборки: release APK/AAB, debug APK, файлы подписи
+build/
+*.idsig
+
+# Граф graphify (генерируется `graphify update .`)
+graphify-out/
+
+# Резервная копия пресетов на время работы tools/build_release.ps1
+export_presets.cfg.buildbak
+
+# Python
+__pycache__/
+
+# ОС/редакторы
+Thumbs.db
+desktop.ini
+.DS_Store

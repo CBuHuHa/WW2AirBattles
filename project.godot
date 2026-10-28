@@ -1,0 +1,58 @@
+; Engine configuration file.
+; Проект: WW2 Air Battles: Оборона аэродрома.
+; Источник истины по дизайну: GDD.md. Веха: M1+M2+juice, вертикальный срез.
+
+config_version=5
+
+[application]
+
+config/name="WW2 Air Battles: Оборона аэродрома"
+config/description="Вертикальный 2D-шутер: Ла-5 обороняет аэродром от налёта He 111. Вертикальный срез M1+M2+juice."
+config/icon="res://assets/art/app_icon.png"
+run/main_scene="res://scenes/main.tscn"
+; M4: жёсткий потолок 60 FPS — стабильный кадр и температура на Android-порте.
+; vsync оставлен по умолчанию (enabled): оба ограничения дают ровные 60 Гц.
+run/max_fps=60
+config/features=PackedStringArray("4.4", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=540
+window/size/viewport_height=960
+window/size/window_width_override=540
+window/size/window_height_override=960
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+window/handheld/orientation=1
+
+[gui]
+
+; Глобальная тема UI (M3-A): Noto Sans с кириллицей (OFL), default_font_size 24,
+; type variation TitleLabel (Bold) для заголовков оверлеев.
+theme/custom="res://assets/ui_theme.tres"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="player_bullet"
+2d_physics/layer_3="enemy"
+2d_physics/layer_4="enemy_bullet"
+
+[physics]
+
+; Бюджет туннелирования снарядов держится на этом значении:
+; пуля игрока 800 px/s → 13.3 px за тик при 60 Гц (радиусы пули 5 + врага 16 = 21 px запаса).
+common/physics_ticks_per_second=60
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+; Android-экспорт (M4) требует ETC2/ASTC-сжатия текстур для GL Compatibility.
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.560784, 0.65098, 0.698039, 1)

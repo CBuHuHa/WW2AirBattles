@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "missions": [
+    {
+      "id": "m1_airfield",
+      "title": "Аэродром",
+      "briefing": "Первый вылет обороны аэродрома.\nОтбей шесть волн и не дай He 111 пройти к полосе.",
+      "result": {
+        "win_title": "Аэродром спасён",
+        "lose_title": "Аэродром потерян"
+      },
+      "boss": "he111",
+      "bullet_speed_min": 260.0,
+      "bullet_speed_max": 320.0,
+      "star_score": 4500,
+      "repair_wave": 3,
+      "repair_types": ["ju87"],
+      "waves": [
+        {
+          "enemies": [
+            {"type": "bf109", "x": 120.0, "depth": "default"},
+            {"type": "bf109", "x": 220.0, "depth": "lead"},
+            {"type": "bf109", "x": 320.0, "depth": "lead"},
+            {"type": "bf109", "x": 420.0, "depth": "default"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "bf109", "x": 80.0, "depth": "v"},
+            {"type": "bf109", "x": 175.0, "depth": "lead"},
+            {"type": "bf109", "x": 270.0, "depth": "mid"},
+            {"type": "bf109", "x": 365.0, "depth": "lead"},
+            {"type": "bf109", "x": 460.0, "depth": "v"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "fw190", "x": 140.0, "depth": "default"},
+            {"type": "fw190", "x": 270.0, "depth": "back"},
+            {"type": "fw190", "x": 400.0, "depth": "default"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "ju87", "x": 140.0, "depth": "default"},
+            {"type": "ju87", "x": 270.0, "depth": "default"},
+            {"type": "ju87", "x": 400.0, "depth": "default"},
+            {"type": "bf109", "x": 120.0, "depth": "back"},
+            {"type": "bf109", "x": 220.0, "depth": "back"},
+            {"type": "bf109", "x": 320.0, "depth": "back"},
+            {"type": "bf109", "x": 420.0, "depth": "back"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "fw190", "x": 145.0, "depth": "default"},
+            {"type": "fw190", "x": 270.0, "depth": "default"},
+            {"type": "fw190", "x": 395.0, "depth": "default"},
+            {"type": "bf109", "x": 120.0, "depth": "back"},
+            {"type": "bf109", "x": 270.0, "depth": "back"},
+            {"type": "bf109", "x": 420.0, "depth": "back"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "fw190", "x": 140.0, "depth": "default"},
+            {"type": "fw190", "x": 400.0, "depth": "default"},
+            {"type": "bf109", "x": 120.0, "depth": "back"},
+            {"type": "bf109", "x": 220.0, "depth": "back"},
+            {"type": "bf109", "x": 320.0, "depth": "back"},
+            {"type": "bf109", "x": 420.0, "depth": "back"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2_crossing",
+      "title": "Переправа",
+      "briefing": "Немцы рвутся к переправе.\nШесть волн Bf 109 и Ju 87 открывают путь Ju 88 — сбей его до моста.",
+      "result": {
+        "win_title": "Переправа цела",
+        "lose_title": "Переправа потеряна"
+      },
+      "boss": "ju88",
+      "bullet_speed_min": 300.0,
+      "bullet_speed_max": 380.0,
+      "star_score": 5500,
+      "repair_wave": 4,
+      "repair_types": ["ju87"],
+      "waves": [
+        {
+          "enemies": [
+            {"type": "bf109", "x": 80.0, "depth": "default"},
+            {"type": "bf109", "x": 175.0, "depth": "lead"},
+            {"type": "bf109", "x": 270.0, "depth": "mid"},
+            {"type": "bf109", "x": 365.0, "depth": "lead"},
+            {"type": "bf109", "x": 460.0, "depth": "default"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "ju87", "x": 100.0, "depth": "back"},
+            {"type": "ju87", "x": 270.0, "depth": "default"},
+            {"type": "ju87", "x": 440.0, "depth": "back"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "bf109", "x": 100.0, "depth": "lead"},
+            {"type": "ju87", "x": 180.0, "depth": "default"},
+            {"type": "ju87", "x": 360.0, "depth": "default"},
+            {"type": "bf109", "x": 220.0, "depth": "back"},
+            {"type": "bf109", "x": 320.0, "depth": "back"},
+            {"type": "bf109", "x": 440.0, "depth": "lead"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "fw190", "x": 140.0, "depth": "default"},
+            {"type": "fw190", "x": 270.0, "depth": "back"},
+            {"type": "fw190", "x": 400.0, "depth": "default"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "ju87", "x": 140.0, "depth": "default"},
+            {"type": "ju87", "x": 270.0, "depth": "default"},
+            {"type": "ju87", "x": 400.0, "depth": "default"},
+            {"type": "bf109", "x": 120.0, "depth": "back"},
+            {"type": "bf109", "x": 220.0, "depth": "back"},
+            {"type": "bf109", "x": 320.0, "depth": "back"},
+            {"type": "bf109", "x": 420.0, "depth": "back"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "fw190", "x": 130.0, "depth": "default"},
+            {"type": "fw190", "x": 410.0, "depth": "default"},
+            {"type": "ju87", "x": 200.0, "depth": "back"},
+            {"type": "ju87", "x": 340.0, "depth": "back"},
+            {"type": "bf109", "x": 90.0, "depth": "back"},
+            {"type": "bf109", "x": 270.0, "depth": "mid"},
+            {"type": "bf109", "x": 450.0, "depth": "back"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m3_city",
+      "title": "Город",
+      "briefing": "Город уже горит.\nДержи строй против Bf 110 и сбей Fw 200 над руинами: аэродром за спиной.",
+      "result": {
+        "win_title": "Город спасён",
+        "lose_title": "Город потерян"
+      },
+      "boss": "fw200",
+      "bullet_speed_min": 340.0,
+      "bullet_speed_max": 420.0,
+      "star_score": 7000,
+      "repair_wave": 4,
+      "repair_types": ["bf110"],
+      "waves": [
+        {
+          "enemies": [
+            {"type": "bf109", "x": 80.0, "depth": "default"},
+            {"type": "bf109", "x": 175.0, "depth": "v"},
+            {"type": "bf109", "x": 270.0, "depth": "mid"},
+            {"type": "bf109", "x": 365.0, "depth": "v"},
+            {"type": "bf109", "x": 460.0, "depth": "default"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "fw190", "x": 140.0, "depth": "default"},
+            {"type": "fw190", "x": 270.0, "depth": "back"},
+            {"type": "fw190", "x": 400.0, "depth": "default"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "bf110", "x": 160.0, "depth": "default"},
+            {"type": "bf109", "x": 100.0, "depth": "back"},
+            {"type": "bf109", "x": 270.0, "depth": "mid"},
+            {"type": "bf109", "x": 440.0, "depth": "back"},
+            {"type": "bf110", "x": 380.0, "depth": "default"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "fw190", "x": 100.0, "depth": "default"},
+            {"type": "fw190", "x": 230.0, "depth": "back"},
+            {"type": "fw190", "x": 310.0, "depth": "back"},
+            {"type": "fw190", "x": 440.0, "depth": "default"},
+            {"type": "ju87", "x": 165.0, "depth": "default"},
+            {"type": "ju87", "x": 375.0, "depth": "default"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "bf110", "x": 140.0, "depth": "default"},
+            {"type": "bf110", "x": 270.0, "depth": "default"},
+            {"type": "bf110", "x": 400.0, "depth": "default"},
+            {"type": "bf109", "x": 120.0, "depth": "back"},
+            {"type": "bf109", "x": 220.0, "depth": "back"},
+            {"type": "bf109", "x": 320.0, "depth": "back"},
+            {"type": "bf109", "x": 420.0, "depth": "back"}
+          ]
+        },
+        {
+          "enemies": [
+            {"type": "fw190", "x": 110.0, "depth": "default"},
+            {"type": "fw190", "x": 270.0, "depth": "back"},
+            {"type": "fw190", "x": 430.0, "depth": "default"},
+            {"type": "bf110", "x": 190.0, "depth": "default"},
+            {"type": "bf110", "x": 350.0, "depth": "default"},
+            {"type": "bf110", "x": 270.0, "depth": "mid"}
+          ]
+        }
+      ]
+    }
+  ]
+}

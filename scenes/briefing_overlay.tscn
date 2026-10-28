@@ -1,0 +1,268 @@
+[gd_scene load_steps=7 format=3]
+
+; briefing_overlay.tscn — экран брифинга (GDD «First 30 seconds»).
+; Палитра ArtStyle: PLAYER #4A5D3A (оливковый), CREAM #D9D2C3, тёмная подложка.
+; Кнопка «В бой»: 320×88, фон PLAYER, кремовый контур 2 px, скругление 10, шрифт 32.
+; Body-строки — 22 px (M3-C): самая длинная «Немецкая авиация идёт бомбить аэродром.»
+; при 24 px занимала ~516 px из 540 и почти касалась краёв; 22 px даёт запас ≥24 px с каждой стороны.
+; Корень и Dim прозрачны для тапов (mouse_filter = 2): тап мимо кнопки ничего не делает.
+; M5.3b: кнопка «Миссии» (MissionsButton) — верхний левый угол, 160×64 (тач-минимум 64),
+; тёмная подложка + кремовый контур; она НЕ пересекается ни со строками, ни с «В бой»
+; (пустое поле y 458…600 абсолютных), поэтому раскладка брифинга не сдвинулась.
+; M6.2b: кнопка «Ангар» (HangarButton) — тем же рядом справа от «Миссии» (184…344 × 16…80),
+; 160×64, тот же стиль: ряд из двух второстепенных кнопок не задевает ни строк, ни «В бой».
+; M6.3b: кнопка «Бесконечный» (EndlessButton) — третьей в том же ряду (352…512 × 16…80),
+; 160×64: правый край 512 < 540 (поле не переполнено, зазор 8 px до «Ангар»).
+; Гейт открытия (SaveGame.is_endless_unlocked) работает только состоянием кнопки (disabled +
+; приглушение): текстовой подсказки условия на брифинге нет (M11/T6, решение D7).
+; M8a: кнопка настроек (SettingsButton) — 64×64 в свободной полосе 460…524 × 88…152, под
+; «Бесконечный»: ряд кнопок кончается на y 80, заголовок начинается с y 230, строки —
+; с y 340, поэтому ничего не перекрывается. Шестерёнка «⚙» 28 px (глифа нет в Noto Sans —
+; рисуется системным fallback, как ★/☆ в выборе миссии). 64, а не 48 px: тач-минимум AGENTS.
+
+[ext_resource type="Script" path="res://scripts/briefing_overlay.gd" id="1_briefing"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
+bg_color = Color(0.290196, 0.364706, 0.227451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hover"]
+bg_color = Color(0.333333, 0.419608, 0.262745, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pressed"]
+bg_color = Color(0.247059, 0.309804, 0.196078, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secondary"]
+bg_color = Color(0.117647, 0.12549, 0.101961, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_secondary_pressed"]
+bg_color = Color(0.0901961, 0.0980392, 0.0784314, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="BriefingOverlay" type="Control"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_briefing")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.121569, 0.121569, 0.121569, 0.55)
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -250.0
+offset_right = 264.0
+offset_bottom = -190.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"TitleLabel"
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 42
+text = "Оборона аэродрома"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Line1" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -140.0
+offset_right = 264.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_font_sizes/font_size = 22
+text = "1943 год. Восточный фронт."
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Line2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -98.0
+offset_right = 264.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_font_sizes/font_size = 22
+text = "Немецкая авиация идёт бомбить аэродром."
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="Line3" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = -56.0
+offset_right = 264.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_font_sizes/font_size = 22
+text = "Перехвати He 111 до бомбардировки."
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="StartButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = 120.0
+offset_right = 160.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_hover_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_pressed_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_normal")
+text = "В бой"
+
+[node name="MissionsButton" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 176.0
+offset_bottom = 80.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_colors/font_hover_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_pressed_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_secondary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_secondary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_secondary_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_secondary")
+text = "Миссии"
+
+[node name="HangarButton" type="Button" parent="."]
+offset_left = 184.0
+offset_top = 16.0
+offset_right = 344.0
+offset_bottom = 80.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_colors/font_hover_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_pressed_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_secondary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_secondary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_secondary_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_secondary")
+text = "Ангар"
+
+[node name="EndlessButton" type="Button" parent="."]
+offset_left = 352.0
+offset_top = 16.0
+offset_right = 512.0
+offset_bottom = 80.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_colors/font_hover_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_pressed_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_disabled_color = Color(0.85098, 0.823529, 0.764706, 0.5)
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_secondary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_secondary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_secondary_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_secondary")
+theme_override_styles/focus = SubResource("StyleBoxFlat_secondary")
+text = "Бесконечный"
+
+[node name="SettingsButton" type="Button" parent="."]
+offset_left = 460.0
+offset_top = 88.0
+offset_right = 524.0
+offset_bottom = 152.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_colors/font_hover_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_pressed_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_secondary")
+theme_override_styles/hover = SubResource("StyleBoxFlat_secondary")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_secondary_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_secondary")
+text = "⚙"

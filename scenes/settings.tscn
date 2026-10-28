@@ -1,0 +1,266 @@
+[gd_scene load_steps=5 format=3]
+
+; settings.tscn — экран настроек (M8a; GDD «Оболочка»: «Настройки: звук, вибрация, сброс
+; прогресса (с подтверждением), «О игре» + лицензии, версия»).
+; Палитра ArtStyle: CREAM #D9D2C3 на тёмной плашке, danger-контур сброса #B23A2E,
+; подтверждение сброса — яркий #D06A57. HUD остаётся векторным: ни одного SpriteCook-ассета.
+; Три строки по 492×96 (тап-минимум 64 px, вся строка — тач-таргет: STOP), блок «О игре»
+; (версия 1.0.0, Noto Sans OFL, SpriteCook) и «Назад» 320×88 снизу.
+; Плашки строк красятся кодом (settings.gd → _row_style): у сброса два состояния
+; (обычное/подтверждение), поэтому стиль не зашит в сцену — как карточки ангара.
+; Корень и Dim прозрачны для тапов (mouse_filter = 2); интерактив — STOP.
+
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_settings"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_normal"]
+bg_color = Color(0.117647, 0.12549, 0.101961, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_hover"]
+bg_color = Color(0.160784, 0.176471, 0.137255, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_pressed"]
+bg_color = Color(0.0901961, 0.0980392, 0.0784314, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85098, 0.823529, 0.764706, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Settings" type="Control"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_settings")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0784314, 0.0862745, 0.0705882, 0.92)
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 24.0
+offset_right = 270.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_type_variation = &"TitleLabel"
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 42
+text = "Настройки"
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="SoundRow" type="PanelContainer" parent="."]
+offset_left = 24.0
+offset_top = 104.0
+offset_right = 516.0
+offset_bottom = 200.0
+mouse_filter = 0
+
+[node name="Inner" type="HBoxContainer" parent="SoundRow"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="SoundRow/Inner"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 28
+text = "Звук"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="StateLabel" type="Label" parent="SoundRow/Inner"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 24
+text = "Вкл"
+horizontal_alignment = 2
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="VibrationRow" type="PanelContainer" parent="."]
+offset_left = 24.0
+offset_top = 208.0
+offset_right = 516.0
+offset_bottom = 304.0
+mouse_filter = 0
+
+[node name="Inner" type="HBoxContainer" parent="VibrationRow"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="VibrationRow/Inner"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 28
+text = "Вибрация"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="StateLabel" type="Label" parent="VibrationRow/Inner"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 24
+text = "Вкл"
+horizontal_alignment = 2
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="ResetRow" type="PanelContainer" parent="."]
+offset_left = 24.0
+offset_top = 312.0
+offset_right = 516.0
+offset_bottom = 408.0
+mouse_filter = 0
+
+[node name="Inner" type="HBoxContainer" parent="ResetRow"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="ResetRow/Inner"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 28
+text = "Сбросить прогресс"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="StateLabel" type="Label" parent="ResetRow/Inner"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.8)
+theme_override_font_sizes/font_size = 24
+text = "Сбросить"
+horizontal_alignment = 2
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="ResetConfirm" type="Label" parent="."]
+visible = false
+offset_left = 24.0
+offset_top = 416.0
+offset_right = 516.0
+offset_bottom = 452.0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_font_sizes/font_size = 22
+text = "Подтвердить сброс?"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="ResetStatus" type="Label" parent="."]
+visible = false
+offset_left = 24.0
+offset_top = 456.0
+offset_right = 516.0
+offset_bottom = 490.0
+theme_override_colors/font_color = Color(1, 0.819608, 0.4, 1)
+theme_override_font_sizes/font_size = 22
+text = "Прогресс сброшен"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="AboutTitle" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 648.0
+offset_right = 516.0
+offset_bottom = 680.0
+theme_type_variation = &"TitleLabel"
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 24
+text = "О игре"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="VersionLine" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 684.0
+offset_right = 516.0
+offset_bottom = 712.0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.92)
+theme_override_font_sizes/font_size = 22
+text = "Версия 1.0.0"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="CreditsFont" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 716.0
+offset_right = 516.0
+offset_bottom = 744.0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.8)
+theme_override_font_sizes/font_size = 20
+text = "Шрифт: Noto Sans (OFL)"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="CreditsArt" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 748.0
+offset_right = 516.0
+offset_bottom = 776.0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 0.8)
+theme_override_font_sizes/font_size = 20
+text = "Арт: SpriteCook"
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="BackButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -136.0
+offset_right = 160.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_hover_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_colors/font_pressed_color = Color(0.85098, 0.823529, 0.764706, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_back_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_back_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_back_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_back_normal")
+text = "Назад"
